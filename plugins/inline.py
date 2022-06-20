@@ -21,7 +21,7 @@ async def inline_users(query: InlineQuery):
 
 @Client.on_inline_query()
 async def answer(bot, query):
-    """Show search results for given inline query"""
+    """ఇచ్చిన ఇన్‌లైన్ ప్రశ్న కోసం శోధన ఫలితాలను చూపండి"""
     
     if not await inline_users(query):
         await query.answer(results=[],
@@ -33,7 +33,7 @@ async def answer(bot, query):
     if AUTH_CHANNEL and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='You have to subscribe my channel to use the bot',
+                           switch_pm_text='బాట్‌ను ఉపయోగించడానికి మీరు నా ఛానెల్‌కు సభ్యత్వాన్ని పొందాలి',
                            switch_pm_parameter="subscribe")
         return
 
@@ -93,7 +93,7 @@ async def answer(bot, query):
         if string:
             switch_pm_text += f' for "{string}"'
 
-        await query.answer(results=[],
+        await query.answer(results=[MutyalaHarshith],
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
