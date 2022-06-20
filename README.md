@@ -57,7 +57,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https: GitHub.com/MutyalaHarshith/mhbeast">
+<a href="https://heroku.com/Deploy?template=https:GitHub.com/MutyalaHarshith/mhbeast">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
