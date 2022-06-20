@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 
-@Client.on_message((filters.private | filters.group) & filters.command('connect'))
+@Client.on_message((filters.private | filters.group) & filters.command('mhconnect'))
 async def addconnection(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -22,7 +22,7 @@ async def addconnection(client, message):
             await message.reply_text(
                 "<b>Enter in correct format!</b>\n\n"
                 "<code>/connect groupid</code>\n\n"
-                "<i>Get your Group id by adding this bot to your group and use  <code>/id</code></i>",
+                "<i>Get your Group id by adding this bot to your group and use @MHGcHat <code>/id</code></i>",
                 quote=True
             )
             return
@@ -42,7 +42,7 @@ async def addconnection(client, message):
     except Exception as e:
         logger.exception(e)
         await message.reply_text(
-            "Invalid Group ID!\n\nIf correct, Make sure I'm present in your group!!",
+            "Invalid Group ID!\n\nసరైనది అయితే, నేను మీ గుంపులో ఉన్నానని నిర్ధారించుకోండి!!",
             quote=True,
         )
 
@@ -56,7 +56,7 @@ async def addconnection(client, message):
             addcon = await add_connection(str(group_id), str(userid))
             if addcon:
                 await message.reply_text(
-                    f"Successfully connected to **{title}**\nNow manage your group from my pm !",
+                    f"Successfully connected to **{title}**\nఇప్పుడు మీ సమూహాన్ని నా pm నుండి నిర్వహించండి !",
                     quote=True,
                     parse_mode="md"
                 )
@@ -75,7 +75,7 @@ async def addconnection(client, message):
             await message.reply_text("Add me as an admin in group", quote=True)
     except Exception as e:
         logger.exception(e)
-        await message.reply_text('Some error occurred! Try again later.', quote=True)
+        await message.reply_text('కొంత లోపం సంభవించింది! తరువాత మళ్ళీ ప్రయత్నించండి.', quote=True)
         return
 
 
@@ -87,7 +87,7 @@ async def deleteconnection(client, message):
     chat_type = message.chat.type
 
     if chat_type == "private":
-        await message.reply_text("Run /connections to view or disconnect from groups!", quote=True)
+        await message.reply_text("Run /connections సమూహాల నుండి వీక్షించడానికి లేదా డిస్‌కనెక్ట్ చేయడానికి!", quote=True)
 
     elif chat_type in ["group", "supergroup"]:
         group_id = message.chat.id
@@ -102,12 +102,12 @@ async def deleteconnection(client, message):
 
         delcon = await delete_connection(str(userid), str(group_id))
         if delcon:
-            await message.reply_text("Successfully disconnected from this chat", quote=True)
+            await message.reply_text("ఈ చాట్ నుండి విజయవంతంగా డిస్‌కనెక్ట్ చేయబడింది", quote=True)
         else:
             await message.reply_text("This chat isn't connected to me!\nDo /connect to connect.", quote=True)
 
 
-@Client.on_message(filters.private & filters.command(["connections"]))
+@Client.on_message(filters.private & filters.command(["mhconnections"]))
 async def connections(client, message):
     userid = message.from_user.id
 
