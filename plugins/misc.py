@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-@Client.on_message(filters.command('id'))
+@Client.on_message(filters.command('id','mhid'))
 async def showid(client, message):
     chat_type = message.chat.type
     if chat_type == "private":
@@ -54,7 +54,7 @@ async def showid(client, message):
             quote=True
         )
 
-@Client.on_message(filters.command(["info"]))
+@Client.on_message(filters.command(["info","mhinfo"]))
 async def who_is(client, message):
     # https://github.com/SpEcHiDe/PyroGramBot/blob/master/pyrobot/plugins/admemes/whois.py#L19
     status_message = await message.reply_text(
@@ -148,7 +148,7 @@ async def imdb_search(client, message):
     else:
         await message.reply('Give me a movie / series Name like Harshith')
 
-@Client.on_callback_query(filters.regex('^imdb''^hari'))
+@Client.on_callback_query(filters.regex('^imdb','hari'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
     imdb = await get_poster(query=movie, id=True)
