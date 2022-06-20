@@ -61,7 +61,7 @@ async def who_is(client, message):
         "`Fetching user info...`"
     )
     await status_message.edit(
-        "`Processing user info...`"
+        "`Processing user info By Mutyala Harshith...`"
     )
     from_user = None
     from_user_id, _ = extract_user(message)
@@ -127,10 +127,10 @@ async def who_is(client, message):
         )
     await status_message.delete()
 
-@Client.on_message(filters.command(["imdb", 'search']))
+@Client.on_message(filters.command(["imdb","harshith", 'search']))
 async def imdb_search(client, message):
     if ' ' in message.text:
-        k = await message.reply('Searching ImDB')
+        k = await message.reply('Searching MHiMDb')
         r, title = message.text.split(None, 1)
         movies = await get_poster(title, bulk=True)
         if not movies:
@@ -144,11 +144,11 @@ async def imdb_search(client, message):
             ]
             for movie in movies
         ]
-        await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await k.edit('Here is what i found on IMDb Harshith', reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply('Give me a movie / series Name')
+        await message.reply('Give me a movie / series Name like Harshith')
 
-@Client.on_callback_query(filters.regex('^imdb'))
+@Client.on_callback_query(filters.regex('^imdb''^hari'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
     imdb = await get_poster(query=movie, id=True)
